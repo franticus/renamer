@@ -3,15 +3,17 @@ const fs = require('fs');
 const path = require('path');
 const { PurgeCSS } = require('purgecss');
 
-const inputHtmlDir = path.join(__dirname, 'x3_renamed');
-const inputCssDir = path.join(__dirname, 'x3_renamed');
-const outputCssDir = path.join(__dirname, 'x4_cssdel');
+const projectRoot = process.cwd();
+
+const inputHtmlDir = path.join(projectRoot, 'x3_renamed');
+const inputCssDir = path.join(projectRoot, 'x3_renamed');
+const outputCssDir = path.join(projectRoot, 'x4_cssdel');
 
 if (!fs.existsSync(inputHtmlDir)) {
-  fs.mkdirSync(inputHtmlDir);
+  fs.mkdirSync(inputHtmlDir, { recursive: true });
 }
 if (!fs.existsSync(outputCssDir)) {
-  fs.mkdirSync(outputCssDir);
+  fs.mkdirSync(outputCssDir, { recursive: true });
 }
 
 function getFilesFromDir(dir, fileTypes) {
