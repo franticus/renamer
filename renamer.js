@@ -5,11 +5,29 @@ const cheerio = require('cheerio');
 const sourceDir = './x1_site';
 const targetDir = './x2_done';
 
+const classMap = new Map();
+
+function generateRandomClassName() {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  let result = '';
+  for (let i = 0; i < 10; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+}
+
+function getClassName(cls) {
+  if (!classMap.has(cls)) {
+    classMap.set(cls, generateRandomClassName());
+  }
+  return classMap.get(cls);
+}
+
 function processHtml(htmlContent) {
   const $ = cheerio.load(htmlContent);
   $('[class]').each(function () {
     const classes = $(this).attr('class').split(/\s+/);
-    const modifiedClasses = classes.map(cls => `${cls}_XXXXXXXXXXXXXXXXXXXX`);
+    const modifiedClasses = classes.map(cls => getClassName(cls));
     $(this).attr('class', modifiedClasses.join(' '));
   });
   return $.html();
@@ -17,7 +35,10 @@ function processHtml(htmlContent) {
 
 function processCss(cssContent) {
   const classSelectorRegex = /\.([\w-]+)(?![^\{]*\})/g;
-  return cssContent.replace(classSelectorRegex, '.$1_XXXXXXXXXXXXXXXXXXXX');
+  return cssContent.replace(
+    classSelectorRegex,
+    (match, p1) => `.${getClassName(p1)}`
+  );
 }
 
 function processFile(filePath) {
