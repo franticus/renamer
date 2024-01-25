@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 
-const sourceDir = './x1_site';
-const targetDir = './x2_done';
+const sourceDir = './x2_cleaned';
+const targetDir = './x3_renamed';
 
 const classMap = new Map();
 
