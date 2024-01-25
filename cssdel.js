@@ -18,7 +18,7 @@ function getFilesFromDir(dir, fileTypes) {
         fs.statSync(curFile).isFile() &&
         fileTypes.indexOf(path.extname(curFile).toLowerCase()) !== -1
       ) {
-        filesToReturn.push(curFile.replace(dir, ''));
+        filesToReturn.push(curFile);
       } else if (fs.statSync(curFile).isDirectory()) {
         walkDir(curFile);
       }
@@ -33,28 +33,46 @@ if (!fs.existsSync(outputCssDir)) {
   fs.mkdirSync(outputCssDir, { recursive: true });
 }
 
+function normalizePath(filePath) {
+  return filePath.split(path.sep).join('/');
+}
+
 async function purgeUnusedCss() {
-  const htmlFiles = getFilesFromDir(inputHtmlDir, ['.html']);
-  const cssFiles = getFilesFromDir(inputCssDir, ['.css']);
+  const htmlFiles = getFilesFromDir(inputHtmlDir, ['.html']).map(file =>
+    normalizePath(file)
+  );
+  const cssFiles = getFilesFromDir(inputCssDir, ['.css']).map(file =>
+    normalizePath(file)
+  );
 
   for (const cssFile of cssFiles) {
-    const cssFilePath = path.join(inputCssDir, cssFile);
-    const purgeCSSResult = await new PurgeCSS().purge({
-      content: htmlFiles.map(file => path.join(inputHtmlDir, file)),
-      css: [cssFilePath],
-    });
+    try {
+      console.log(`Processing CSS file: ${cssFile}`);
 
-    if (purgeCSSResult.length > 0) {
-      const cleanCssFilePath = path.join(outputCssDir, cssFile);
-      fs.writeFileSync(cleanCssFilePath, purgeCSSResult[0].css, 'utf-8');
-      console.log(`Clean CSS written to: ${cleanCssFilePath}`);
+      const purgeCSSResult = await new PurgeCSS().purge({
+        content: htmlFiles,
+        css: [cssFile],
+      });
+
+      if (purgeCSSResult.length > 0 && purgeCSSResult[0].css) {
+        const cleanCssFilePath = path
+          .join(outputCssDir, path.basename(cssFile))
+          .replace(/\\/g, '/');
+        fs.writeFileSync(cleanCssFilePath, purgeCSSResult[0].css, 'utf-8');
+        console.log(`Clean CSS written to: ${cleanCssFilePath}`);
+      } else {
+        console.log(`No CSS content to write for: ${cssFile}`);
+      }
+    } catch (error) {
+      console.error(`Error processing ${cssFile}: ${error}`);
     }
   }
 
   for (const htmlFile of htmlFiles) {
-    const sourceHtmlPath = path.join(inputHtmlDir, htmlFile);
-    const destinationHtmlPath = path.join(outputCssDir, htmlFile);
-    fs.renameSync(sourceHtmlPath, destinationHtmlPath);
+    const destinationHtmlPath = path
+      .join(outputCssDir, path.basename(htmlFile))
+      .replace(/\\/g, '/');
+    fs.renameSync(htmlFile, destinationHtmlPath);
     console.log(`Moved HTML file to: ${destinationHtmlPath}`);
   }
 }
