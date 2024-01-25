@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 
-const sourceDir = './x1_site';
+const sourceDir = './x1_original';
 const targetDir = './x2_cleaned';
 
 if (!fs.existsSync(targetDir)) {
