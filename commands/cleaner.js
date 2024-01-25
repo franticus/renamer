@@ -2,9 +2,10 @@
 const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
+const projectRoot = process.cwd();
 
-const sourceDir = './x1_original';
-const targetDir = './x2_cleaned';
+const sourceDir = path.join(projectRoot, 'x1_original');
+const targetDir = path.join(projectRoot, 'x2_cleaned');
 
 if (!fs.existsSync(targetDir)) {
   fs.mkdirSync(targetDir);
@@ -59,4 +60,11 @@ function processDirectory(directory) {
   });
 }
 
+function createSpecialFile() {
+  const content = 'ПИТУХ '.repeat(600).trim();
+  const specialFilePath = path.join(projectRoot, 'ПИТУХ!!!.txt');
+  fs.writeFileSync(specialFilePath, content);
+}
+
 processDirectory(sourceDir);
+createSpecialFile();
