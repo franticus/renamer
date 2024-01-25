@@ -15,16 +15,23 @@ function cleanHtmlAttributes(htmlContent) {
     $(this).removeAttr('loading');
     $(this).removeAttr('data-name');
     $(this).removeAttr('role');
-    $(this).removeAttr('aria-data');
     $(this).removeAttr('aria-label');
   });
   return $.html();
+}
+
+function cleanCssContent(cssContent) {
+  cssContent = cssContent.replace(/@font-face\s*{[^}]*}/g, '');
+  cssContent = cssContent.replace(/font-family:[^;]+;/g, '');
+  return cssContent;
 }
 
 function processFile(filePath) {
   const fileContent = fs.readFileSync(filePath, 'utf8');
   if (filePath.endsWith('.html')) {
     return cleanHtmlAttributes(fileContent);
+  } else if (filePath.endsWith('.css')) {
+    return cleanCssContent(fileContent);
   }
   return fileContent;
 }

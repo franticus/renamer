@@ -1,9 +1,11 @@
 {
   "name": "renamer",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "bin": {
     "clean": "./cleaner.js",
     "rename": "./renamer.js",
+    "txtmap": "./txtmap.js",
+    "txtapply": "./txtapply.js",
     "del": "./del.js"
   },
   "dependencies": {
