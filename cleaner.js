@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
@@ -14,6 +15,7 @@ function cleanHtmlAttributes(htmlContent) {
     $(this).removeAttr('loading');
     $(this).removeAttr('data-name');
     $(this).removeAttr('role');
+    $(this).removeAttr('aria-data');
     $(this).removeAttr('aria-label');
   });
   return $.html();
