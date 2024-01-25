@@ -6,6 +6,10 @@ const cheerio = require('cheerio');
 const sourceDir = './x4_cssdel';
 const targetDir = './x5_txtmap';
 
+if (!fs.existsSync(targetDir)) {
+  fs.mkdirSync(targetDir);
+}
+
 function createTextMap(htmlContent) {
   const $ = cheerio.load(htmlContent);
   const textMap = {};

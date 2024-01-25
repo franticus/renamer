@@ -7,6 +7,13 @@ const inputHtmlDir = path.join(__dirname, 'x3_renamed');
 const inputCssDir = path.join(__dirname, 'x3_renamed');
 const outputCssDir = path.join(__dirname, 'x4_cssdel');
 
+if (!fs.existsSync(inputHtmlDir)) {
+  fs.mkdirSync(inputHtmlDir);
+}
+if (!fs.existsSync(outputCssDir)) {
+  fs.mkdirSync(outputCssDir);
+}
+
 function getFilesFromDir(dir, fileTypes) {
   const filesToReturn = [];
 

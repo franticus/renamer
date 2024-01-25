@@ -6,6 +6,10 @@ const cheerio = require('cheerio');
 const sourceDir = './x2_cleaned';
 const targetDir = './x3_renamed';
 
+if (!fs.existsSync(targetDir)) {
+  fs.mkdirSync(targetDir);
+}
+
 const classMap = new Map();
 
 function generateRandomClassName() {
