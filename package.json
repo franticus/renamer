@@ -1,14 +1,18 @@
 {
   "name": "renamer",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "bin": {
     "clean": "./cleaner.js",
     "rename": "./renamer.js",
     "txtmap": "./txtmap.js",
     "txtapply": "./txtapply.js",
+    "cssdel": "./cssdel.js",
     "del": "./del.js"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.12"
+    "cheerio": "^1.0.0-rc.12",
+    "css": "^3.0.0",
+    "parse5": "^7.1.2",
+    "purgecss": "^5.0.0"
   }
 }
