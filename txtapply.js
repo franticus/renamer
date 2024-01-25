@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 
-const sourceDir = './x3_renamed';
-const textMapDir = './x4_txtmap';
-const targetDir = './x5_txtapply';
+const sourceDir = './x4_cssdel';
+const textMapDir = './x5_txtmap';
+const targetDir = './x6_txtapply';
 
 if (!fs.existsSync(targetDir)) {
   fs.mkdirSync(targetDir);

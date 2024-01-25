@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const { PurgeCSS } = require('purgecss');
 
-const inputHtmlDir = path.join(__dirname, 'x5_txtapply');
-const inputCssDir = path.join(__dirname, 'x5_txtapply');
-const outputCssDir = path.join(__dirname, 'x6_cssdel');
+const inputHtmlDir = path.join(__dirname, 'x3_renamed');
+const inputCssDir = path.join(__dirname, 'x3_renamed');
+const outputCssDir = path.join(__dirname, 'x4_cssdel');
 
 function getFilesFromDir(dir, fileTypes) {
   const filesToReturn = [];

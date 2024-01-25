@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 
-const sourceDir = './x3_renamed';
-const targetDir = './x4_txtmap';
+const sourceDir = './x4_cssdel';
+const targetDir = './x5_txtmap';
 
 function createTextMap(htmlContent) {
   const $ = cheerio.load(htmlContent);

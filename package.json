@@ -1,13 +1,20 @@
 {
   "name": "renamer",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "bin": {
     "clean": "./cleaner.js",
     "rename": "./renamer.js",
+    "cssdel": "./cssdel.js",
     "txtmap": "./txtmap.js",
     "txtapply": "./txtapply.js",
-    "cssdel": "./cssdel.js",
     "del": "./del.js"
+  },
+  "scripts": {
+    "tomap": "npm run clean && npm run rename && npm run cssdel && npm run txtmap",
+    "clean": "./cleaner.js",
+    "rename": "./renamer.js",
+    "cssdel": "./cssdel.js",
+    "txtmap": "./txtmap.js"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",

@@ -17,6 +17,6 @@ function clearDirectory(directoryPath) {
 
 clearDirectory('./x2_cleaned');
 clearDirectory('./x3_renamed');
-clearDirectory('./x4_txtmap');
-clearDirectory('./x5_txtapply');
-clearDirectory('./x6_cssdel');
+clearDirectory('./x4_cssdel');
+clearDirectory('./x5_txtmap');
+clearDirectory('./x6_txtapply');
