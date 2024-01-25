@@ -35,6 +35,11 @@ function processHtml(htmlContent) {
     const modifiedClasses = classes.map(cls => getClassName(cls));
     $(this).attr('class', modifiedClasses.join(' '));
   });
+  $('[id]').each(function () {
+    const id = $(this).attr('id');
+    const modifiedId = getClassName(id);
+    $(this).attr('id', modifiedId);
+  });
   return $.html();
 }
 

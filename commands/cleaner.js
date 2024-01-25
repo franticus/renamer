@@ -20,6 +20,13 @@ function cleanHtmlAttributes(htmlContent) {
     $(this).removeAttr('data-name');
     $(this).removeAttr('role');
     $(this).removeAttr('aria-label');
+    $(this).removeAttr('data-w-id');
+    if ($(this).attr('alt')) {
+      $(this).attr('alt', 'image');
+    }
+    if ($(this).is('span')) {
+      $(this).replaceWith($(this).html());
+    }
   });
   return $.html();
 }

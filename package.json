@@ -1,6 +1,6 @@
 {
   "name": "renamer",
-  "version": "6.2.0",
+  "version": "6.3.0",
   "bin": {
     "clean": "node ./commands/cleaner.js",
     "rename": "node ./commands/renamer.js",
@@ -11,6 +11,7 @@
   },
   "scripts": {
     "tomap": "npm run clean && npm run rename && npm run cssdel && npm run txtmap",
+    "toapply": "npm run clean && npm run rename && npm run cssdel && npm run txtmap && npm run txtapply",
     "clean": "node ./commands/cleaner.js",
     "rename": "node ./commands/renamer.js",
     "cssdel": "node ./commands/cssdel.js",
