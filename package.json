@@ -15,8 +15,8 @@
     "rename": "node ./renamer.js",
     "cssdel": "node ./cssdel.js",
     "txtmap": "node ./txtmap.js",
-    "del": "node ./del.js",
-    "txtapply": "node ./txtapply.js"
+    "txtapply": "node ./txtapply.js",
+    "del": "node ./del.js"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
