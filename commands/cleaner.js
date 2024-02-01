@@ -60,11 +60,5 @@ function processDirectory(directory) {
   });
 }
 
-function createSpecialFile() {
-  const content = 'ПИТУХ '.repeat(600).trim();
-  const specialFilePath = path.join(projectRoot, 'ПИТУХ!!!.txt');
-  fs.writeFileSync(specialFilePath, content);
-}
-
 processDirectory(sourceDir);
 createSpecialFile();
