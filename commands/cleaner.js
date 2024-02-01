@@ -61,4 +61,3 @@ function processDirectory(directory) {
 }
 
 processDirectory(sourceDir);
-createSpecialFile();
