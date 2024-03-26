@@ -19,7 +19,11 @@ function createTextMap(htmlContent) {
     .find('*')
     .each(function () {
       if ($(this).children().length === 0) {
-        const text = $(this).text().trim();
+        let text = $(this).text();
+        text = text
+          .replace(/[\r\n\t]+/g, ' ')
+          .replace(/\s\s+/g, ' ')
+          .trim();
         if (text) {
           textMap[`text_${counter}`] = text;
           counter++;
