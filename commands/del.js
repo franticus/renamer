@@ -23,6 +23,7 @@ function clearDirectory(directoryPath) {
 
 const currentDirectory = process.cwd();
 
+// clearDirectory(path.join(currentDirectory, 'x1_original'));
 clearDirectory(path.join(currentDirectory, 'x2_cleaned'));
 clearDirectory(path.join(currentDirectory, 'x3_renamed'));
 clearDirectory(path.join(currentDirectory, 'x4_cssdel'));
