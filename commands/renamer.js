@@ -15,7 +15,7 @@ const classMap = new Map();
 function generateRandomClassName() {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   let result = '';
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 15; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
   return result;
