@@ -1,13 +1,23 @@
-#!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
 
 function clearDirectory(directoryPath) {
   try {
-    fs.rmSync(directoryPath, { recursive: true });
-    console.log(`Папка ${directoryPath} успешно удалена.`);
+    const files = fs.readdirSync(directoryPath);
+    for (const file of files) {
+      const currentPath = path.join(directoryPath, file);
+      if (fs.lstatSync(currentPath).isDirectory()) {
+        clearDirectory(currentPath);
+        fs.rmdirSync(currentPath);
+      } else {
+        fs.unlinkSync(currentPath);
+      }
+    }
+    console.log(`Содержимое папки ${directoryPath} успешно удалено.`);
   } catch (err) {
-    console.error(`Ошибка при удалении папки ${directoryPath}: ${err}`);
+    console.error(
+      `Ошибка при удалении содержимого папки ${directoryPath}: ${err}`
+    );
   }
 }
 
