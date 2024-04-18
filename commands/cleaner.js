@@ -32,6 +32,14 @@ function cleanHtmlAttributes(htmlContent) {
     $('[data-open-product=""]').remove();
     $('[data-wf-cart-type="rightSidebar"]').remove();
     $('script').remove();
+
+    // // Добавлено: Удаление всех <img> тегов с src содержащим 'https'
+    // $('img').each(function () {
+    //   const src = $(this).attr('src');
+    //   if (src && src.includes('https')) {
+    //     $(this).remove();
+    //   }
+    // });
   });
   return $.html();
 }
